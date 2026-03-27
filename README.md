@@ -178,4 +178,4 @@ Content-Type: application/json
 
 ## 许可证
 
-MIT
+Apache License 2.0
