@@ -1,7 +1,7 @@
 # 文件中转站 | File Transfer
 
 基于 Cloudflare Workers + R2 的文件分享服务，支持大文件分片上传，最大支持 100GB。
-[![](upload://zRFbwpGXhDxdYDkzXbOvaym2BC5.svg)](https://linux.do/)
+[![](<img width="110" height="20" alt="image" src="https://github.com/user-attachments/assets/924f3340-3791-4200-86de-e3ce7482d288" />)](https://linux.do/)
 
 ## 功能特性
 
