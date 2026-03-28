@@ -2,7 +2,7 @@
 
 基于 Cloudflare Workers + R2 的文件分享服务，支持大文件分片上传，最大支持 100GB。
 
-![community](https://github.com/user-attachments/assets/653f2b6b-ee32-4f0f-abe0-1ba96e4bb473)
+![community](https://github.com/user-attachments/assets/653f2b6b-ee32-4f0f-abe0-1ba96e4bb473)(https://linux.do/)
 
 ## 功能特性
 
