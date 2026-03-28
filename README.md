@@ -2,7 +2,7 @@
 
 基于 Cloudflare Workers + R2 的文件分享服务，支持大文件分片上传，最大支持 100GB。
 ![community](https://github.com/user-attachments/assets/653f2b6b-ee32-4f0f-abe0-1ba96e4bb473)<?xml version="1.0"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="20" viewBox="0 0 110 20">
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="20" viewBox="0 0 110 20">
   <!-- 背景 -->
   <rect width="110" height="20" rx="3" fill="#2e3440"/>
   <rect x="55" width="55" height="20" rx="3" fill="#ffb006"/>
