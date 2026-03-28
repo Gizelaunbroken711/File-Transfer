@@ -10,7 +10,7 @@
   
   <!-- 文字 -->
   <text x="25" y="15" fill="white" font-size="12" font-family="Arial, sans-serif">&#x793E;&#x533A;</text>
-  <text x="60" y="15" fill="black" font-size="12" font-family="Arial, sans-serif">LinuxDO</text>
+
 </svg>
 
 
